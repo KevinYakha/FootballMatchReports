@@ -45,6 +45,10 @@ public static class PlayAnalyzer
                 return "Oh no! " + ((Injury)report).GetDescription() + " Medics are on the field.";
             case Incident:
                 return ((Incident)report).GetDescription();
+            case Manager when ((Manager)report).Club == null:
+                return ((Manager)report).Name;
+            case Manager:
+                return ((Manager)report).Name + $" ({((Manager)report).Club})";
             default:
                 throw new ArgumentException();
         }
