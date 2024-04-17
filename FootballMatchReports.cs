@@ -33,6 +33,20 @@ public static class PlayAnalyzer
 
     public static string AnalyzeOffField(object report)
     {
-        throw new NotImplementedException($"Please implement the (static) PlayAnalyzer.AnalyzeOffField() method");
+        switch (report)
+        {
+            case int:
+                return $"There are {report} supporters at the match.";
+            case string:
+                return $"{report}";
+            case Foul:
+                return ((Foul)report).GetDescription();
+            case Injury:
+                return "Oh no! " + ((Injury)report).GetDescription() + " Medics are on the field.";
+            case Incident:
+                return ((Incident)report).GetDescription();
+            default:
+                throw new ArgumentException();
+        }
     }
 }
